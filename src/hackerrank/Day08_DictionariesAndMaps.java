@@ -1,4 +1,4 @@
-package home170620.hackerrank;
+package hackerrank;
 
 import java.util.HashMap;
 import java.util.Map;
