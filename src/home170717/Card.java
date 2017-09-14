@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 class Card {
+
 	final static int heart = 0;
 	final static int spade = 1;
 	final static int diamond = 2;
@@ -21,6 +22,23 @@ class Card {
 	private final int suit;
 	private boolean faceup;
 
+	private int currentX;
+	private int currentY;
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void select() {
+		this.selected = true;
+	}
+
+	public void deselect() {
+		this.selected = false;
+	}
+
+	private boolean selected;
+
 	Card link;
 
 	// constructor
@@ -32,9 +50,15 @@ class Card {
 	}
 
 	public void draw(final Graphics g, final int x, final int y) {
+		currentX = x;
+		currentY = y;
 		// clear rectangle, draw border
 		g.clearRect(x, y, width, height);
-		g.setColor(Color.black);
+		if (selected == false) {
+			g.setColor(Color.black);
+		} else {
+			g.setColor(Color.green);
+		}
 		g.drawRect(x, y, width, height);
 		// draw body of card
 		if (isFaceUp()) {
@@ -108,5 +132,9 @@ class Card {
 
 	public int getSuit() {
 		return suit;
+	}
+
+	public boolean includes(int tx, int ty) {
+		return currentX <= tx && tx <= currentX + Card.width && currentY <= ty && ty <= currentY + Card.height;
 	}
 }

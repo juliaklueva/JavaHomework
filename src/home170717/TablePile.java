@@ -25,41 +25,83 @@ class TablePile extends CardPile {
 	}
 
 	@Override
+	public Card pop() {
+		Card poped = super.pop();
+
+		if (!this.empty() && !this.top().isFaceUp()) {
+			this.top().flip();
+		}
+
+		return poped;
+	}
+
+	@Override
 	public boolean includes(int tx, int ty) {
 		// don't test bottom of card
-		return x <= tx && tx <= x + Card.width && y <= ty;
+		if (top() == null) {
+			return x <= tx && tx <= x + Card.width && y <= ty && ty <= y + Card.height;
+		} else {
+			return cardsIncludes(top(), tx, ty);
+		}
+	}
+
+	private boolean cardsIncludes(Card card, int tx, int ty) {
+		if (card.includes(tx, ty)) {
+			return true;
+		} else if (card.link != null) {
+			return cardsIncludes(card.link, tx, ty);
+		} else {
+			return false;
+		}
+
+	}
+
+	@Override
+	public void move(Card aCard, CardPile targetPile) {
+		if (targetPile.canTake(aCard)) {
+			CardPile movingPile = new CardPile(0, 0);
+			while (true) {
+				Card movingCard = this.pop();
+				movingPile.push(movingCard);
+				if (movingCard == aCard) {
+					break;
+				}
+			}
+			while (!movingPile.empty()) {
+				targetPile.push(movingPile.pop());
+				if (movingPile.top() != null && !targetPile.canTake(movingPile.top())) {
+					movingPile.push(targetPile.pop());
+					while (!movingPile.empty()) {
+						this.push(movingPile.pop());
+					}
+				}
+			}
+			Solitaire.deselect();
+		} else {
+			Solitaire.deselect();
+		}
+
+	}
+
+	private Card find(Card aCard, int tx, int ty) {
+		if (aCard.includes(tx, ty)) {
+			return aCard;
+		} else {
+			return find(aCard.link, tx, ty);
+		}
 	}
 
 	@Override
 	public void select(int tx, int ty) {
-		if (empty()) {
+		if (this.empty()) {
 			return;
-		}
-
-		// if face down, then flip
-		Card topCard = top();
-		if (!topCard.isFaceUp()) {
-			topCard.flip();
-			return;
-		}
-
-		// else see if any suit pile can take card
-		topCard = pop();
-		for (int i = 0; i < 4; i++) {
-			if (Solitaire.suitPile[i].canTake(topCard)) {
-				Solitaire.suitPile[i].push(topCard);
-				return;
+		} else {
+			Card selectedCard = find(top(), tx, ty);
+			if (!selectedCard.isFaceUp()) {
+				selectedCard = top();
 			}
+			Solitaire.select(selectedCard, this);
 		}
-		// else see if any other table pile can take card
-		for (int i = 0; i < 7; i++) {
-			if (Solitaire.tableau[i].canTake(topCard)) {
-				Solitaire.tableau[i].push(topCard);
-				return;
-			}
-		}
-		// else put it back on our pile
-		push(topCard);
 	}
 
 	private int stackDisplay(Graphics g, Card aCard) {

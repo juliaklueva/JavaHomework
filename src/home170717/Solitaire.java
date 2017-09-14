@@ -5,11 +5,29 @@ import java.awt.Event;
 import java.awt.Graphics;
 
 public class Solitaire extends Applet {
+
 	static DeckPile deckPile;
 	static DiscardPile discardPile;
 	static TablePile tableau[];
 	static SuitPile suitPile[];
 	static CardPile allPiles[];
+
+	private static Card selectedCard;
+	private static CardPile selectedPile;
+
+	public static void select(Card selCard, CardPile selPile) {
+		selectedCard = selCard;
+		selectedCard.select();
+		selectedPile = selPile;
+	}
+
+	public static void deselect() {
+		selectedPile = null;
+		if (selectedCard != null) {
+			selectedCard.deselect();
+		}
+		selectedCard = null;
+	}
 
 	@Override
 	public void init() {
@@ -39,7 +57,11 @@ public class Solitaire extends Applet {
 	public boolean mouseDown(Event evt, int x, int y) {
 		for (int i = 0; i < 13; i++) {
 			if (allPiles[i].includes(x, y)) {
-				allPiles[i].select(x, y);
+				if (selectedCard == null) {
+					allPiles[i].select(x, y);
+				} else {
+					selectedPile.move(selectedCard, allPiles[i]);
+				}
 				repaint();
 				return true;
 			}

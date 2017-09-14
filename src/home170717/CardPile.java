@@ -63,4 +63,8 @@ class CardPile {
 		return false;
 	}
 
+	public void move(Card aCard, CardPile targetPile) {
+		// nothing to do
+	}
+
 }

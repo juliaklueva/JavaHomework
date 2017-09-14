@@ -14,4 +14,5 @@ class SuitPile extends CardPile {
 		Card topCard = top();
 		return (aCard.getSuit() == topCard.getSuit()) && (aCard.getRank() == 1 + topCard.getRank());
 	}
+
 }
