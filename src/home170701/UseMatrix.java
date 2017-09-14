@@ -1,6 +1,6 @@
 package home170701;
 
-public class Matrix {
+public class UseMatrix {
 
 	public static void main(String[] args) {
 
