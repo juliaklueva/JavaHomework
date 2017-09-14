@@ -1,4 +1,4 @@
-package home170624;
+package testframework;
 
 public class Asserts {
 
@@ -18,7 +18,6 @@ public class Asserts {
 		return notEquals;
 	}
 
-
 	public static boolean assertEquals(int actual, int expected) {
 		boolean equals = actual == expected;
 		if (!equals) {
@@ -34,7 +33,6 @@ public class Asserts {
 		}
 		return notEquals;
 	}
-
 
 	public static boolean assertEquals(boolean actual, boolean expected) {
 		boolean equals = actual == expected;
