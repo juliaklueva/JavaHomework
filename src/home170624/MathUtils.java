@@ -6,7 +6,6 @@ public class MathUtils {
 		return i > j ? i : j;
 	}
 
-
 	public static int sign(int i) {
 
 		if (i > 0)
@@ -17,12 +16,10 @@ public class MathUtils {
 			return 0;
 	}
 
-
 	public static int mod(int a, int b) {
 
 		return a - ((int) a / b) * b;
 	}
-
 
 	public static boolean isPrime(int a) {
 
@@ -33,7 +30,6 @@ public class MathUtils {
 				return false;
 		return true;
 	}
-
 
 	public static boolean isFibonacci(int a) {
 
@@ -48,7 +44,6 @@ public class MathUtils {
 		}
 		return false;
 	}
-
 
 	public static long Fibonacci(int n) {
 		if (n == 0)

@@ -1,5 +1,7 @@
 package home170624;
 
+import testframework.Asserts;
+
 public class PrimeTest {
 
 	public static void main(String[] args) {
