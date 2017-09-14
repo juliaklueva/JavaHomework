@@ -9,17 +9,17 @@ public class ArrayPrint {
 		int[] m2 = {};
 
 		int[] m3 = new int[10];
-		
-		double [] m4 = new double[10];
-		
+
+		double[] m4 = new double[10];
+
 		String s[] = new String[3];
-		
+
 		arrayPrint(m);
 		arrayPrint(m2);
 		arrayPrint(m3);
 		arrayPrint(m4);
 		arrayPrint(s);
-		
+
 	}
 
 	private static void arrayPrint(int[] matrix) {
@@ -33,7 +33,7 @@ public class ArrayPrint {
 		System.out.println("]");
 
 	}
-	
+
 	private static void arrayPrint(double[] matrix) {
 
 		System.out.print("[");
@@ -45,7 +45,7 @@ public class ArrayPrint {
 		System.out.println("]");
 
 	}
-	
+
 	private static void arrayPrint(String[] matrix) {
 
 		System.out.print("[");
@@ -57,7 +57,5 @@ public class ArrayPrint {
 		System.out.println("]");
 
 	}
-	
-	
 
 }
