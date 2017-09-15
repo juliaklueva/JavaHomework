@@ -2,14 +2,17 @@ package home170627;
 
 public class DecToBinary {
 
-	public static void main(String[] args) {
-
-		int dec = ConvertUtils.initDec();
-
-		System.out.println("Dec = " + dec);
-
-		System.out.println("Bin = " +ConvertUtils.decToBinConverter(dec));
-
+	public static String toBinary(int decNumber) {
+		if (decNumber == 0) {
+			return "0";
+		}
+		String result = "";
+		int binNumber;
+		while (decNumber != 0) {
+			binNumber = decNumber % 2;
+			result = binNumber + result;
+			decNumber = decNumber / 2;
+		}
+		return result;
 	}
-
 }
