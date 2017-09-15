@@ -13,25 +13,24 @@ public class DecToHex {
 			hexNumber = decNumber % 16;
 			if (hexNumber > 9) {
 				if (hexNumber == 10) {
-					c = 'a'; // a
+					c = 'a';
 				}
 				if (hexNumber == 11) {
-					c = 'b'; // b
+					c = 'b';
 				}
 				if (hexNumber == 12) {
-					c = 'c'; // c
+					c = 'c';
 				}
 				if (hexNumber == 13) {
-					c = 'd'; // d
+					c = 'd';
+					if (hexNumber == 14) {
+						c = 'e';
+					}
+					if (hexNumber == 15) {
+						c = 'f';
+					}
+					result = c + result;
 				}
-				if (hexNumber == 14) {
-					c = 'e'; // e
-				}
-				if (hexNumber == 15) {
-					c = 'f'; // f
-				}
-				result = c + result;
-
 			} else {
 				result = hexNumber + result;
 
@@ -41,5 +40,4 @@ public class DecToHex {
 		}
 		return result;
 	}
-
 }
