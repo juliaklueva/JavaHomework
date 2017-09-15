@@ -2,7 +2,7 @@ package home170627;
 
 import testframework.Asserts;
 
-public class UseConvert {
+public class UseConverts {
 
 	public static void main(String[] args) {
 
