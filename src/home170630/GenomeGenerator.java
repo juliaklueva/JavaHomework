@@ -6,7 +6,7 @@ public class GenomeGenerator {
 
 	static final byte[] ALPHABET = { 'A', 'C', 'G', 'T' };
 
-	static public byte[] generate(int size) { // helper
+	static public byte[] generate(int size) {
 		byte[] data = new byte[size];
 
 		Random random = new Random();
