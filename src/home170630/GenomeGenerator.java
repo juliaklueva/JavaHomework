@@ -15,8 +15,6 @@ public class GenomeGenerator {
 			int letterIndex = random.nextInt(ALPHABET.length);
 			data[i] = ALPHABET[letterIndex];
 		}
-
 		return data;
 	}
-
 }
